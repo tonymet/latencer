@@ -9,16 +9,9 @@ class Latency  :NSObject{
    
     override func awakeFromNib() {
         let ipAddress = UserDefaults.standard.string(forKey: "ipaddress");
-          do{
-              self.pinger = try SwiftyPing(host: ipAddress!, configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
-          }
-          catch{
-              self.pinger = nil;
-              print("error init()")
-          }
+        self.pinger = try? SwiftyPing(host: ipAddress!, configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
         item.button?.title = "0";
         item.menu = taskMenu;
-        swiftyPing();
     }
 
     @IBAction func addressAction(_ sender: NSTextField) {

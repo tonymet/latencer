@@ -13,7 +13,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var app: Latency!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-
+        UserDefaults.standard.register(defaults: [
+            "ipaddress": "8.8.8.8",
+            "interval": 0.5
+        ])
+        app.swiftyPing();
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
