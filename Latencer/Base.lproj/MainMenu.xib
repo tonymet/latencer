@@ -21,6 +21,7 @@
         <customObject id="I8a-XH-wtz" customClass="Latency" customModule="Latencer" customModuleProvider="target">
             <connections>
                 <outlet property="settingsWindow2" destination="90K-dn-bqa" id="Su7-qd-cqd"/>
+                <outlet property="userDefaults" destination="cEa-UK-ZWh" id="3Vd-c8-UNj"/>
             </connections>
         </customObject>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="90K-dn-bqa">
@@ -35,11 +36,14 @@
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0AY-8a-RGQ">
                         <rect key="frame" x="240" y="229" width="96" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="8.8.8.8" drawsBackground="YES" id="rwT-G8-KRY">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="8.8.8.8" drawsBackground="YES" id="rwT-G8-KRY">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <binding destination="cEa-UK-ZWh" name="value" keyPath="values.ipaddress" id="1gz-cJ-dPO"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Flb-kG-x5B">
                         <rect key="frame" x="180" y="229" width="54" height="16"/>
@@ -54,5 +58,6 @@
             </view>
             <point key="canvasLocation" x="139" y="147"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="cEa-UK-ZWh"/>
     </objects>
 </document>

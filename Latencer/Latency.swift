@@ -10,6 +10,7 @@ import Cocoa
 
 class Latency  :NSObject{
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength);
+    @IBOutlet weak var userDefaults: NSUserDefaultsController!
     @IBOutlet var settingsWindow2: NSWindow!
     func run() {
         item.button?.title = "0";
@@ -30,12 +31,12 @@ class Latency  :NSObject{
         let separator = NSMenuItem.separator();
         menu.addItem(separator);
         
-        let settingsItem = NSMenuItem(title: "Settings", action: #selector(self.settings), keyEquivalent: "cmd-,")
+        let settingsItem = NSMenuItem(title: "Settings", action: #selector(self.settings), keyEquivalent: ",")
         settingsItem.target=self;
         menu.addItem(settingsItem);
         
         menu.addItem(NSMenuItem.separator())
-        let quit = NSMenuItem(title: "Quit", action: #selector(self.quit), keyEquivalent: "");
+        let quit = NSMenuItem(title: "Quit", action: #selector(self.quit), keyEquivalent: "q");
         quit.target = self;
         menu.addItem(quit);
         
@@ -79,8 +80,14 @@ class Latency  :NSObject{
             let _ = text;
             self.item.button?.title = "0";
         }
-        
-        runCommand("/sbin/ping", ["-i 0.5", "8.8.8.8"], onOutput, onError);
+        //var ipAddress  = userDefaults.value(forKey: "ipaddress") as? String
+        /*if (ipAddress == nil){
+           
+        }*/
+        // print(UserDefaults.standard.dictionaryRepresentation().values)
+        // print( UserDefaults.value(forKey: "ipaddress") as? String)
+        let ipAddress = "8.8.8.8";
+        runCommand("/sbin/ping", ["-i 0.5", ipAddress ], onOutput, onError);
     }
     
      func runCommand(_ cmd: String, _ args: [String], _ onOutput: @escaping (String) -> Void, _ onError: @escaping (String) -> Void) {
