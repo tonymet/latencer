@@ -1,11 +1,3 @@
-//
-//  Latency.swift
-//  Latencer
-//
-//  Created by Sai Vittal B on 20/05/2020.
-//  Copyright © 2020 Sai Vittal B. All rights reserved.
-//
-
 import Cocoa
 
 class Latency  :NSObject{
@@ -48,7 +40,7 @@ class Latency  :NSObject{
     }
     
     @IBAction func settingsAction(_ sender: Any) {
-        self.settingsWindow2.display();
+        self.settingsWindow2.setIsVisible(true);
     }
     
     func swiftyPing(){
