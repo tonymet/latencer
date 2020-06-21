@@ -11,6 +11,7 @@
 		DA0FC6221F93FA5A00678FAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0FC6211F93FA5A00678FAD /* Assets.xcassets */; };
 		DA0FC6251F93FA5A00678FAD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0FC6231F93FA5A00678FAD /* MainMenu.xib */; };
 		DA0FC62E1F93FABD00678FAD /* Latency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0FC62D1F93FABD00678FAD /* Latency.swift */; };
+		E65CD5F6249ECB0C00B295C4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65CD5F5249ECB0C00B295C4 /* Settings.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		DA0FC6241F93FA5A00678FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		DA0FC6261F93FA5A00678FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0FC62D1F93FABD00678FAD /* Latency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Latency.swift; sourceTree = "<group>"; };
+		E65CD5F5249ECB0C00B295C4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				DA0FC62D1F93FABD00678FAD /* Latency.swift */,
 				DA0FC6211F93FA5A00678FAD /* Assets.xcassets */,
 				DA0FC6231F93FA5A00678FAD /* MainMenu.xib */,
+				E65CD5F5249ECB0C00B295C4 /* Settings.xib */,
 				DA0FC6261F93FA5A00678FAD /* Info.plist */,
 			);
 			path = Latencer;
@@ -126,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E65CD5F6249ECB0C00B295C4 /* Settings.xib in Resources */,
 				DA0FC6221F93FA5A00678FAD /* Assets.xcassets in Resources */,
 				DA0FC6251F93FA5A00678FAD /* MainMenu.xib in Resources */,
 			);
@@ -276,7 +280,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 3WW6K9QZPN;
+				DEVELOPMENT_TEAM = 98XGZPH9G3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Latencer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,7 +304,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 3WW6K9QZPN;
+				DEVELOPMENT_TEAM = 98XGZPH9G3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Latencer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

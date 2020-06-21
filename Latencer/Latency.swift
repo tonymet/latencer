@@ -8,16 +8,19 @@
 
 import Cocoa
 
-class Latency {
-    static let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength);
-    
-    static func run() {
+class Latency  :NSObject{
+    let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength);
+    @IBOutlet var settingsWindow2: NSWindow!
+    func run() {
         item.button?.title = "0";
         item.menu = createMenu();
         ping();
     }
-    
-    static func createMenu() -> NSMenu {
+    override init(){
+        super.init();
+        self.run();
+    }
+     func createMenu() -> NSMenu {
         let menu = NSMenu();
         
         let donate = NSMenuItem(title: "Donate", action: #selector(self.donate), keyEquivalent: "");
@@ -27,23 +30,34 @@ class Latency {
         let separator = NSMenuItem.separator();
         menu.addItem(separator);
         
+        let settingsItem = NSMenuItem(title: "Settings", action: #selector(self.settings), keyEquivalent: "cmd-,")
+        settingsItem.target=self;
+        menu.addItem(settingsItem);
+        
+        menu.addItem(NSMenuItem.separator())
         let quit = NSMenuItem(title: "Quit", action: #selector(self.quit), keyEquivalent: "");
         quit.target = self;
         menu.addItem(quit);
         
         return menu;
     }
+
     
-    @objc static func donate() {
+    
+    @objc  func donate() {
         let url = URL(string: "https://www.paypal.me/saivittalb33")!;
         NSWorkspace.shared.open(url);
     }
     
-    @objc static func quit() {
+    @objc  func quit() {
         NSApplication.shared.terminate(nil);
     }
     
-    static func ping() {
+    @objc  func settings() {
+        self.settingsWindow2.display();
+    }
+    
+     func ping() {
         let regex = try! NSRegularExpression(pattern: "time=[0-9\\.]+ ms");
         
         let onOutput = {(text: String) in
@@ -54,22 +68,22 @@ class Latency {
                 var latency = Float((text as NSString).substring(with: range))!
                 latency = min(999, max(10, round(latency / 10) * 10));
                 
-                item.button?.title = String(format: "%.0f", round(latency));
+                self.item.button?.title = String(format: "%.0f", round(latency));
             }
             else {
-                item.button?.title = "0";
+                self.item.button?.title = "0";
             }
         }
         
         let onError = {(text: String) in
             let _ = text;
-            item.button?.title = "0";
+            self.item.button?.title = "0";
         }
         
         runCommand("/sbin/ping", ["-i 0.5", "8.8.8.8"], onOutput, onError);
     }
     
-    static func runCommand(_ cmd: String, _ args: [String], _ onOutput: @escaping (String) -> Void, _ onError: @escaping (String) -> Void) {
+     func runCommand(_ cmd: String, _ args: [String], _ onOutput: @escaping (String) -> Void, _ onError: @escaping (String) -> Void) {
         
         let process = Process();
         process.launchPath = cmd;
