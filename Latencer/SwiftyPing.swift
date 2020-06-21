@@ -230,6 +230,7 @@ public class SwiftyPing: NSObject {
         self.timeoutTimer = timer
 
         currentQueue.async {
+            let pingStart = Date()
             let address = self.destination.ipv4Address
             guard let icmpPackage = self.createICMPPackage(identifier: UInt16(self.identifier), sequenceNumber: UInt16(self.sequenceIndex), payloadSize: Int(self.configuration.payloadSize)), let socket = self.socket else { return }
             let socketError = CFSocketSendData(socket, address as CFData, icmpPackage as CFData, self.configuration.timeoutInterval)
@@ -242,7 +243,7 @@ public class SwiftyPing: NSObject {
                 case .timeout: error = .requestTimeout
                 default: break
                 }
-                let response = PingResponse(identifier: self.identifier, ipAddress: self.destination.ip ?? "", sequenceNumber: self.sequenceIndex, duration: Date().timeIntervalSince(self.sequenceStart ?? Date()), error: error)
+                let response = PingResponse(identifier: self.identifier, ipAddress: self.destination.ip ?? "", sequenceNumber: self.sequenceIndex, duration: Date().timeIntervalSince(pingStart), error: error)
                 self.isPinging = false
                 self.informObserver(of: response)
                 

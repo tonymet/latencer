@@ -9,13 +9,13 @@
 import Cocoa
 
 class Latency  :NSObject{
-    let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength);
+    let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength);
     @IBOutlet weak var userDefaults: NSUserDefaultsController!
     @IBOutlet var settingsWindow2: NSWindow!
     func run() {
         item.button?.title = "0";
         item.menu = createMenu();
-        ping();
+        swiftyPing();
     }
     override init(){
         super.init();
@@ -58,97 +58,19 @@ class Latency  :NSObject{
         self.settingsWindow2.display();
     }
     
-     func ping() {
-        let regex = try! NSRegularExpression(pattern: "time=[0-9\\.]+ ms");
-        
-        let onOutput = {(text: String) in
-            if let result = regex.firstMatch(in: text, options: [], range: NSRange(text.startIndex..., in: text)) {
-                
-                let range = NSMakeRange(result.range.location + 5, result.range.length - 5 - 3);
-                
-                var latency = Float((text as NSString).substring(with: range))!
-              //  latency = min(999, max(10, round(latency / 10) * 10));
-                print("ping latency: %{latency}")
-                //self.item.button?.title = String(format: "%.0f", round(latency));
-            }
-            else {
-                self.item.button?.title = "0";
-            }
-        }
-        
-        let onError = {(text: String) in
-            let _ = text;
-            self.item.button?.title = "0";
-        }
-        //var ipAddress  = userDefaults.value(forKey: "ipaddress") as? String
-        /*if (ipAddress == nil){
-           
-        }*/
-        // print(UserDefaults.standard.dictionaryRepresentation().values)
-        let ipAddress = UserDefaults.standard.string(forKey: "ipaddress");
-        runCommand("/sbin/ping", ["-i 0.5", ipAddress! ], onOutput, onError);
-        swiftyPing();
-    }
-    
-     func runCommand(_ cmd: String, _ args: [String], _ onOutput: @escaping (String) -> Void, _ onError: @escaping (String) -> Void) {
-        
-        let process = Process();
-        process.launchPath = cmd;
-        process.arguments = args;
-        
-        let output = Pipe();
-        process.standardOutput = output;
-        output.fileHandleForReading.readabilityHandler = { file in
-            let data = file.availableData;
-            
-            if let output = String(data: data, encoding: .ascii) {
-                DispatchQueue.main.async {
-                    onOutput(output);
-                }
-            }
-        }
-        
-        let error = Pipe();
-        process.standardError = error;
-        error.fileHandleForReading.readabilityHandler = { file in
-            let data = file.availableData;
-            
-            if let output = String(data: data, encoding: .ascii) {
-                DispatchQueue.main.async {
-                    onError(output);
-                }
-            }
-        }
-        
-        process.launch();
-    }
-    
-    
     func swiftyPing(){
-        // Ping indefinitely
         do{
-            let pinger = try SwiftyPing(host: "1.1.1.1", configuration: PingConfiguration(interval: 1.0, with: 5), queue: DispatchQueue.global())
+            let ipAddress = UserDefaults.standard.string(forKey: "ipaddress");
+            let pinger = try SwiftyPing(host: ipAddress!, configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
             pinger.observer = { (response) in
                 let duration = response.duration
                 print(duration)
-                self.item.button?.title = String(format: "%0.2f", round(duration));
+                self.item.button?.title = String(format: "%0.2f", duration * 1000);
             }
-            pinger.startPinging()
-
-            // Ping once
-            /*
-            let once = try SwiftyPing(host: "1.1.1.1", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
-            once.observer = { (response) in
-                let duration = response.duration
-                print(duration)
-            }
-            once.targetCount = 1
-            once.startPinging()
-             */
- 
+            pinger.startPinging();
         }
         catch {
-        print("Error Swiftyping");
+            print("Error Swiftyping");
         }
     }
 }
