@@ -18,9 +18,29 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <userDefaultsController representsSharedInstance="YES" id="cEa-UK-ZWh"/>
+        <menu id="CT8-Vz-xut">
+            <items>
+                <menuItem title="Settings" id="JmF-hd-vQn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="settingsAction:" target="I8a-XH-wtz" id="Pm3-Id-GYb"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ACW-rw-mWW"/>
+                <menuItem title="Quit" id="DNN-OA-1Gm">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitAction:" target="I8a-XH-wtz" id="FbT-qG-Xly"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-104" y="-146"/>
+        </menu>
         <customObject id="I8a-XH-wtz" customClass="Latency" customModule="Latencer" customModuleProvider="target">
             <connections>
                 <outlet property="settingsWindow2" destination="90K-dn-bqa" id="Su7-qd-cqd"/>
+                <outlet property="taskMenu" destination="CT8-Vz-xut" id="yo6-s6-09J"/>
                 <outlet property="userDefaults" destination="cEa-UK-ZWh" id="3Vd-c8-UNj"/>
             </connections>
         </customObject>
@@ -28,7 +48,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1669"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" wantsLayer="YES" id="ABM-aF-JN4">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -59,6 +79,5 @@
             </view>
             <point key="canvasLocation" x="139" y="147"/>
         </window>
-        <userDefaultsController representsSharedInstance="YES" id="cEa-UK-ZWh"/>
     </objects>
 </document>
