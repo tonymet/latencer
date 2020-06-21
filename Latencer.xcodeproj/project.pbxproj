@@ -11,6 +11,7 @@
 		DA0FC6221F93FA5A00678FAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0FC6211F93FA5A00678FAD /* Assets.xcassets */; };
 		DA0FC6251F93FA5A00678FAD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0FC6231F93FA5A00678FAD /* MainMenu.xib */; };
 		DA0FC62E1F93FABD00678FAD /* Latency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0FC62D1F93FABD00678FAD /* Latency.swift */; };
+		E67D3595249F0CE900DD5C03 /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67D3594249F0CE900DD5C03 /* SwiftyPing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		DA0FC6241F93FA5A00678FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		DA0FC6261F93FA5A00678FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0FC62D1F93FABD00678FAD /* Latency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Latency.swift; sourceTree = "<group>"; };
+		E67D3594249F0CE900DD5C03 /* SwiftyPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				DA0FC6211F93FA5A00678FAD /* Assets.xcassets */,
 				DA0FC6231F93FA5A00678FAD /* MainMenu.xib */,
 				DA0FC6261F93FA5A00678FAD /* Info.plist */,
+				E67D3594249F0CE900DD5C03 /* SwiftyPing.swift */,
 			);
 			path = Latencer;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E67D3595249F0CE900DD5C03 /* SwiftyPing.swift in Sources */,
 				DA0FC62E1F93FABD00678FAD /* Latency.swift in Sources */,
 				DA0FC6201F93FA5A00678FAD /* AppDelegate.swift in Sources */,
 			);
