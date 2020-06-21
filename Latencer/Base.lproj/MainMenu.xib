@@ -42,6 +42,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <action selector="addressAction:" target="I8a-XH-wtz" id="66Q-sD-OFH"/>
                             <binding destination="cEa-UK-ZWh" name="value" keyPath="values.ipaddress" id="1gz-cJ-dPO"/>
                         </connections>
                     </textField>

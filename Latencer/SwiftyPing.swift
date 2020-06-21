@@ -107,7 +107,7 @@ public class SwiftyPing: NSObject {
     }
     // MARK: - Initialization
     /// Ping host
-    let destination: Destination
+    public var destination: Destination
     /// Ping configuration
     let configuration: PingConfiguration
     /// This closure gets called with ping responses.

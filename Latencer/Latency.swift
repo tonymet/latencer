@@ -10,6 +10,7 @@ import Cocoa
 
 class Latency  :NSObject{
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength);
+    var pinger : SwiftyPing?
     @IBOutlet weak var userDefaults: NSUserDefaultsController!
     @IBOutlet var settingsWindow2: NSWindow!
     func run() {
@@ -17,8 +18,17 @@ class Latency  :NSObject{
         item.menu = createMenu();
         swiftyPing();
     }
-    override init(){
+    override init() {
+        let ipAddress = UserDefaults.standard.string(forKey: "ipaddress");
+        do{
+            self.pinger = try SwiftyPing(host: ipAddress!, configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
+        }
+        catch{
+            self.pinger = nil;
+            print("error init()")
+        }
         super.init();
+
         self.run();
     }
      func createMenu() -> NSMenu {
@@ -42,7 +52,20 @@ class Latency  :NSObject{
         
         return menu;
     }
-
+    @IBAction func addressAction(_ sender: NSTextField) {
+        let host = sender.stringValue;
+        do{
+            print("changing destionation host: ", host);
+            let result = try SwiftyPing.Destination.getIPv4AddressFromHost(host: host)
+            let destination = SwiftyPing.Destination(host: host, ipv4Address: result)
+            pinger?.destination = destination;
+        }
+        catch{
+            print("error parsing address:")
+        }
+        
+    }
+    
     
     
     @objc  func donate() {
@@ -60,14 +83,12 @@ class Latency  :NSObject{
     
     func swiftyPing(){
         do{
-            let ipAddress = UserDefaults.standard.string(forKey: "ipaddress");
-            let pinger = try SwiftyPing(host: ipAddress!, configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
-            pinger.observer = { (response) in
+            pinger?.observer = { (response) in
                 let duration = response.duration
                 print(duration)
                 self.item.button?.title = String(format: "%0.2f", duration * 1000);
             }
-            pinger.startPinging();
+            pinger?.startPinging();
         }
         catch {
             print("Error Swiftyping");
