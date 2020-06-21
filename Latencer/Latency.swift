@@ -85,9 +85,8 @@ class Latency  :NSObject{
            
         }*/
         // print(UserDefaults.standard.dictionaryRepresentation().values)
-        // print( UserDefaults.value(forKey: "ipaddress") as? String)
-        let ipAddress = "8.8.8.8";
-        runCommand("/sbin/ping", ["-i 0.5", ipAddress ], onOutput, onError);
+        let ipAddress = UserDefaults.standard.string(forKey: "ipaddress");
+        runCommand("/sbin/ping", ["-i 0.5", ipAddress! ], onOutput, onError);
     }
     
      func runCommand(_ cmd: String, _ args: [String], _ onOutput: @escaping (String) -> Void, _ onError: @escaping (String) -> Void) {
